@@ -6,6 +6,15 @@
 "scripts": {
 "test": "jest"
 },
+  "dependencies": {
+
+
+"jest": "^29.7.0",
+
+
+"node": "^21.0.0"
+
+},
 "keywords": [],
 "author": "",
 "license": "ISC"
