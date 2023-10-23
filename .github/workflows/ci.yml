@@ -4,11 +4,11 @@ on:
   workflow_dispatch:
     # Inputs the workflow accepts.
     inputs:
-      name:
+      Run Type:
         # Friendly description to be shown in the UI instead of 'name'
-        description: 'Person to greet'
+        description: 'Type of Run'
         # Default value if no value is explicitly provided
-        default: 'World'
+        default: 'demo'
         # Input has to be provided for the workflow to run
         required: false
         # The data type of the input
