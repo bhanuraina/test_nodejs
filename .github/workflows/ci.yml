@@ -24,8 +24,10 @@ jobs:
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
+      env:
+         NODE_VER: ${{secrets.NODE_VERSION}}
       with:
-        node-version: ${{secrets.NODE_VERSION}}
+        node-version: ${{env.NODE_VER}}
 
     - name: Install dependencies
       run: npm install
