@@ -35,4 +35,9 @@ jobs:
          echo "$GITHUB_WORKFLOW $GITHUB_REF"
          echo run is a ${{ github.event.inputs.type }}
     - name: Run tests
-      run: npm test
+      id: test_result
+      run: |
+         results = 'npm test | grep Tests'
+         echo "::set-output name=TEST_RESULT::$results"
+         echo "steps.test_result.outputs.TEST_RESULT"
+     
