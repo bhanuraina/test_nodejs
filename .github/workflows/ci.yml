@@ -25,7 +25,7 @@ jobs:
     - name: Setup Node.js
       uses: actions/setup-node@v2
       env:
-         node_version : ${{variables.NODE_VERSION}}
+         node_version : ${{secrets.NODE_VERSION}}
       with:
         node-version: "$node_version"
 
