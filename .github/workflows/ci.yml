@@ -17,6 +17,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    outputs:
+      results: ${{steps.test_result.TEST_RESULT}}
 
     steps:
     - name: Checkout code
@@ -38,6 +40,7 @@ jobs:
       id: test_result
       run: |
          results="$(npm test | grep Tests)"
-         echo "name=TEST_RESULT::$results" >> $GITHUB_OUTPUT
+         echo $results
+         echo "::set-output name=TEST_RESULT::$results" 
          
      
