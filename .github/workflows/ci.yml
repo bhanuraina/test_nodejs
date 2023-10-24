@@ -38,9 +38,6 @@ jobs:
          echo run is a ${{ github.event.inputs.type }}
     - name: Run tests
       id: test_result
-      run: |
-         results="$(npm test | grep Tests)"
-         echo $results
-         echo "::set-output name=TEST_RESULT::$results" 
+      run: echo "::set-output name=TEST_RESULT::npm test | grep Tests" 
          
      
