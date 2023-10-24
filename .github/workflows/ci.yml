@@ -37,7 +37,7 @@ jobs:
     - name: Run tests
       id: test_result
       run: |
-         results=$(npm test | grep Tests)
+         results="$(npm test | grep Tests)"
          echo "name=TEST_RESULT::$results" >> $GITHUB_OUTPUT
          
      
