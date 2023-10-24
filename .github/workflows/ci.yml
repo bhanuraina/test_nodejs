@@ -40,5 +40,5 @@ jobs:
     - name: Get NodeJS Version
       id: nodeversion
       run: |
-        echo "name=version::$(node --version)"     
+        echo "name=version::$(node --version)" >> $GITHUB_OUTPUT    
      
