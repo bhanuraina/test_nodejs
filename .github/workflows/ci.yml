@@ -17,8 +17,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    outputs:
-      results: ${{steps.test_result.TEST_RESULT}}
+    
 
     steps:
     - name: Checkout code
@@ -36,10 +35,10 @@ jobs:
          npm install
          echo "$GITHUB_WORKFLOW $GITHUB_REF"
          echo run is a ${{ github.event.inputs.type }}
-    - name: Run tests
-      id: test_result
-      run: | 
-          echo "::set-output name=TEST_RESULT::npm test | grep Tests" 
-          echo "${{steps.test_result.outputs.TEST_RESULT}}"
-         
+    - name: Run test
+      run: npm test
+    - name: Get NodeJS Version
+      id: nodeversion
+      run: |
+        echo "name=version::$(node --version)"     
      
