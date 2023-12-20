@@ -35,8 +35,8 @@ jobs:
          npm install
          echo "$GITHUB_WORKFLOW $GITHUB_REF"
          echo run is a ${{ github.event.inputs.type }}
-         IMAGES=$(find  -iname "*" -type f | tr -d '\n')  
-         CHARTS=$(find  -iname "*" -type f | tr -d '\n') 
+         IMAGES=$(find  -iname "*" -type f | tr -s '\n' ' ')  
+         CHARTS=$(find  -iname "*" -type f | tr -s '\n' ' ') 
          echo "images=$IMAGES "
          echo "images=$IMAGES" >> $GITHUB_OUTPUT
          echo "charts=$CHARTS "
