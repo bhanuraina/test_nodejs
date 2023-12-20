@@ -35,6 +35,12 @@ jobs:
          npm install
          echo "$GITHUB_WORKFLOW $GITHUB_REF"
          echo run is a ${{ github.event.inputs.type }}
+         IMAGES=$(find  -iname "*" -type f | tr -d '\n')  
+         CHARTS=$(find  -iname "*" -type f | tr -d '\n') 
+         echo "images=$IMAGES "
+         echo "images=$IMAGES" >> $GITHUB_OUTPUT
+         echo "charts=$CHARTS "
+         echo "charts=$CHARTS" >> $GITHUB_OUTPUT
     - name: Run test
       run: npm test
     - name: Get NodeJS Version
