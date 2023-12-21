@@ -37,9 +37,9 @@ jobs:
          echo run is a ${{ github.event.inputs.type }}
          IMAGES=$(find . -iname "*" -type f | tr  '\r\n' ' ')  
          CHARTS=$(find . -iname "*" -type f | tr  '\r\n' ' ') 
-         echo "images=$IMAGES "
+         echo "images=$IMAGES"
          echo "images=$IMAGES" >> $GITHUB_OUTPUT
-         echo "charts=$CHARTS "
+         echo "charts=$CHARTS"
          echo "charts=$CHARTS" >> $GITHUB_OUTPUT
     - name: Run test
       run: npm test
