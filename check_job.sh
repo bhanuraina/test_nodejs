@@ -1,8 +1,8 @@
 #!/bin/bash
 
 GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
-OWNER="your_username"
-REPO="your_repository"
+OWNER="bhanuraina"
+REPO="test_nodejs"
 WORKFLOW_FILE="your_workflow.yml"
 
 # Check if workflow dispatch is already running
