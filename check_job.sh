@@ -1,6 +1,6 @@
 #!/bin/bash
 
-GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
+GITHUB_TOKEN="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"
 OWNER="bhanuraina"
 REPO="test_nodejs"
 WORKFLOW_FILE="ci.yml"
