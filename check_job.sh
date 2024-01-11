@@ -7,7 +7,7 @@ WORKFLOW_FILE="ci.yml"
 
 # Check if workflow dispatch is already running
 dispatch_status=$(curl -s -H "Accept: application/vnd.github.v3+json" \
-  -H "Authorization: token $github_token" \
+  -H "Authorization: Bearer $github_token" \
   https://api.github.com/repos/$OWNER/$REPO/actions/workflows/$WORKFLOW_FILE/dispatches)
 echo $dispatch_status 
 if [  $(echo $dispatch_status | jq '.total_count') = 0   ]; then
