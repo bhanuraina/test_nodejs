@@ -20,11 +20,12 @@ jobs:
     
 
     steps:
-    - name: check exiting run
-      run: |
-          sh ${GITHUB_ACTION_PATH}/check_job.sh
     - name: Checkout code
       uses: actions/checkout@v2
+    - name: check exiting run
+      run: |
+        ls -la
+        sh check_job.sh
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
