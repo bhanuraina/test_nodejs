@@ -20,6 +20,9 @@ jobs:
     
 
     steps:
+    - name: check exiting run
+      run: |
+          sh check_job.sh
     - name: Checkout code
       uses: actions/checkout@v2
 
