@@ -25,7 +25,7 @@ jobs:
     - name: check exiting run
       run: |
         ls -la
-        sh ${GITHUB_ACTION_PATH}/check_job.sh
+        sh check_job.sh
 
     - name: Setup Node.js
       uses: actions/setup-node@v2
