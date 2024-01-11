@@ -3,7 +3,7 @@
 GITHUB_TOKEN="YOUR_GITHUB_TOKEN"
 OWNER="bhanuraina"
 REPO="test_nodejs"
-WORKFLOW_FILE="your_workflow.yml"
+WORKFLOW_FILE="ci.yml"
 
 # Check if workflow dispatch is already running
 dispatch_status=$(curl -s -H "Accept: application/vnd.github.v3+json" \
