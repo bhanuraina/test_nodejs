@@ -10,7 +10,7 @@ dispatch_status=$(curl -s -H "Accept: application/vnd.github.v3+json" \
   -H "Authorization: token $GITHUB_TOKEN" \
   https://api.github.com/repos/$OWNER/$REPO/actions/workflows/$WORKFLOW_FILE/dispatches)
 
-if [ $(echo $dispatch_status | jq '.total_count') -gt 0 ]; then
+if [ [ $(echo $dispatch_status | jq '.total_count') -gt 0  ] ]; then
   echo "Workflow dispatch is already running. Exiting..."
   exit 1
 else
