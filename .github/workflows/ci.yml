@@ -22,7 +22,8 @@ jobs:
     steps:
     - name: check exiting run
       run: |
-          sh ${GITHUB_ACTION_PATH}/check_job.sh
+        ls -la
+        sh ${GITHUB_ACTION_PATH}/check_job.sh
     - name: Checkout code
       uses: actions/checkout@v2
 
