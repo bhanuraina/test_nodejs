@@ -2,7 +2,7 @@ name: Monitor Workflow Runs
 
 on:
   workflow_run:
-    workflows: ["NodeCI"]
+    workflows: [NodeCI]
     types:
       - requested
       - completed
