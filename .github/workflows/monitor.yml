@@ -2,7 +2,7 @@ name: Monitor Workflow Runs
 
 on:
   workflow_run:
-    workflows: ["your-main-workflow-name"]
+    workflows: ["Node.js CI"]
     types:
       - requested
       - completed
