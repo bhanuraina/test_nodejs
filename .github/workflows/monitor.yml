@@ -1,0 +1,19 @@
+name: Monitor Workflow Runs
+
+on:
+  workflow_run:
+    workflows: ["your-main-workflow-name"]
+    types:
+      - requested
+      - completed
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Add more steps here as needed for monitoring
+      # For example, send notifications, log details, etc.
