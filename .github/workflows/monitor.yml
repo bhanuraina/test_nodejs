@@ -1,19 +1,16 @@
-name: Monitor Workflow Runs
+
+name: Test
 
 on:
   workflow_run:
-    workflows: [NodeCI]
+    workflows:
+      - Preflight
     types:
-      - requested
       - completed
 
 jobs:
-  monitor:
+  test-job:
+    name: Test Step
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      # Add more steps here as needed for monitoring
-      # For example, send notifications, log details, etc.
+      - run: env
