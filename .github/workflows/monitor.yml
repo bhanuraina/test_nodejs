@@ -1,0 +1,14 @@
+name: Test
+
+on:
+  workflow_run:
+    workflows: [NodeCI]
+    types:
+      - completed
+
+jobs:
+  test-job:
+    name: Test Step
+    runs-on: ubuntu-latest
+    steps:
+      - run: env
