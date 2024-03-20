@@ -1,0 +1,76 @@
+name: "Robotframework setup"
+description: "Github Action to setup python and robotframework"
+
+inputs:
+  rf_version:
+    description: "Set RF Version to be installed. If not set, then install latest."
+    required: false
+  requirements_path:
+    description: "Path to Python requirements.txt file to install extra robot libraries."
+    required: false
+  playwright:
+    description: "True or False depending if browser_library is installed"
+    required: false
+outputs:
+  result:
+    description: "Result of the setup."
+    value: ${{ steps.post-check.outputs.RESULT}}
+
+runs:
+  using: "composite"
+
+  steps:
+    - name: Install tools
+      id: pre-check
+      shell: bash
+      run: echo "has_python=$(python3 -V &> /dev/null && pip -V &> /dev/null; echo $?)" >> $GITHUB_OUTPUT
+
+    - name: Setup Python3
+      if: steps.pre-check.outputs.has_python != 0
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+
+    - name: Setup Robot Framework
+      shell: bash
+      run: |
+        RF_VERSION=${{ inputs.rf_version }}
+        if ! pip list | grep -q 'robotframework'; then
+          if [ -z "$RF_VERSION" ]; then
+            echo "Installing latest Robot Framework..."
+            pip install robotframework
+          else
+            echo "Installing Robot Framework version $RF_VERSION..."
+            pip install robotframework==$RF_VERSION
+          fi
+        else
+          echo "Robot Framework already installed."
+        fi
+        robot --version || echo "Robot Framework version could not be determined."
+
+    - name: Setup requirements
+      if: ${{ inputs.requirements_path }}
+      shell: bash
+      run: |
+        pip install -r ${{ inputs.requirements_path }}
+
+    # needed for Playwright (Browser library for Robot Framework)
+    - name: Setup Node.js
+      if: ${{ inputs.playwright }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: Install Playwright
+      if: ${{ inputs.playwright }}
+      shell: bash
+      run: |
+        rfbrowser init
+
+    - name: Set output
+      id: post-check
+      shell: bash
+      run: |
+        which robot \
+          && echo RESULT="OK" >> $GITHUB_OUTPUT \
+          || echo RESULT="FAIL" >> $GITHUB_OUTPUT
