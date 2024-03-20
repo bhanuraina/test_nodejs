@@ -54,7 +54,7 @@ jobs:
         echo "name=version::$(node --version)" >> $GITHUB_OUTPUT   
  # Setup robotfw to run tests
     - name: Robotframework setup
-      uses: telia/vibu-actions/common/robotfw-setup@v1.1.4
+      uses: bhanuraina/robotfw-setup@main
       id: robot-setup
       if: ${{ hashFiles(inputs.robot_test_path) != '' }}
       with:
