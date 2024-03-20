@@ -54,7 +54,7 @@ jobs:
         echo "name=version::$(node --version)" >> $GITHUB_OUTPUT   
  # Setup robotfw to run tests
     - name: Robotframework setup
-      uses: bhanuraina/test_nodejs/robotfw-setup@main
+      uses: bhanuraina/test_nodejs/robotfw-setup@master
       id: robot-setup
       if: ${{ hashFiles(inputs.robot_test_path) != '' }}
       with:
