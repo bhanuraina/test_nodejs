@@ -6,6 +6,7 @@ Library    RequestsLibrary
 
 *** Variables ***
 ${my_secret}     my_value
+${headers}= Create Dictionary Authorization: token ${my_secret} Accept: application/vnd.github.v3+json
 
 *** Test Cases ***
 Test GitHub Action Trigger
