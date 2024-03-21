@@ -14,7 +14,7 @@ Test GitHub Action Trigger
 Given GitHub Action workflow is configured
     [Documentation]    Ensures that the GitHub Action workflow is configured properly
     # In this example, we'll assume that the workflow file exists in a specific directory
-    ${workflow_path}=    Set Variable    path/to/your/workflow.yml
+    ${workflow_path}=    Set Variable    .github/workflows/ci.yml
     File Should Exist    ${workflow_path}
     # You might want to add additional checks to ensure the workflow file is configured correctly
 
