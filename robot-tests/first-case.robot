@@ -27,7 +27,7 @@ Given GitHub Action workflow is configured
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    ${response}=    POST   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches  ${headers}   data={"ref": "master"}
+    ${response}=    POST   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches  ${headers}   -d {"ref": "master"}
     Status Should Be    204    ${response}
 
 Then GitHub Action workflow is triggered successfully
