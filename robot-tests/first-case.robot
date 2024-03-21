@@ -21,7 +21,8 @@ Given GitHub Action workflow is configured
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${{secrets.PAT}}    data={"ref": "main"}
+    ${MySecret}			ThisIsNotReallyIt
+    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${MySecret}    data={"ref": "main"}
     ${status}=    Set Variable    ${response.status_code}
     Should Be Equal As Numbers    ${status}    204
 
