@@ -18,6 +18,11 @@ on:
         type: string
         required: false
         default: ./robot-tests
+      robot_requirements_path:
+        description: Path to robotframework requirements file.
+        type: string
+        required: false
+        default: ./robot-tests/requirements.txt
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
