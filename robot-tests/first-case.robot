@@ -6,7 +6,6 @@ Library    RequestsLibrary
 
 *** Variables ***
 ${my_secret}     my_value
-${headers}       Authorization: token ${my_secret} Accept: application/vnd.github.v3+json
 ${data}    ref=master
 
 *** Test Cases ***
@@ -29,7 +28,9 @@ When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
     # RequestsLibrary.Create Session  hook    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml  verify=${True}
-    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=${headers}
+    ${headers}=    Create Dictionary    Authorization    token ${my_secret}    Accept    application/vnd.github.v3+json
+    ${data}=    Create Dictionary    ref=main
+    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=${headers} json=${data}
     Status Should Be    204    ${response}
 
 Then GitHub Action workflow is triggered successfully
