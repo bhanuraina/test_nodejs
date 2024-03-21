@@ -30,7 +30,7 @@ When Triggering GitHub Action workflow
     # RequestsLibrary.Create Session  hook    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml  verify=${True}
     ${headers}=    Create Dictionary    Authorization    token ${my_secret}    Accept    application/vnd.github.v3+json
     ${data}=    Create Dictionary    ref=master
-    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/Hello-test/actions/workflows/main.yml/dispatches    POST    headers=Authorization: token ${my_secret}    json=${data}
+    ${response}=    Post Request    https://api.github.com/repos/bhanuraina/Hello-test/actions/workflows/main.yml/dispatches    POST    headers=Authorization: token ${my_secret}    json=${data}
     Log To Console    ${response}
     Status Should Be    204    ${response}
 
