@@ -13,6 +13,11 @@ on:
         required: false
         # The data type of the input
         type: string
+      robot_test_path:
+        description: Path to robotframework test files to be run.
+        type: string
+        required: false
+        default: ./robot-tests
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: false
@@ -62,7 +67,7 @@ jobs:
       run: |
         results_dir="${GITHUB_JOB}-${GITHUB_RUN_NUMBER}_$(date +%Y%m%d-%H%M%S)"
         echo "results_dir=$results_dir" >> $GITHUB_ENV
-        robot --outputdir ${results_dir} ${{ inputs.robot_test_path }} \
+        robot --variable my_secret:${{secrets.PAT}} --outputdir ${results_dir} ${{ inputs.robot_test_path }} \
           && echo "result=true" >> $GITHUB_OUTPUT \
           || echo "result=false" >> $GITHUB_OUTPUT
     
