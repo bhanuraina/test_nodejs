@@ -3,7 +3,7 @@ Library    OperatingSystem
 Library    Collections
 
 *** Variables ***
-    ${MySecret}			ThisIsNotReallyIt
+    ${my_secret}			ThisIsNotReallyIt
 
 *** Test Cases ***
 Test GitHub Action Trigger
@@ -24,7 +24,7 @@ Given GitHub Action workflow is configured
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${MySecret}    data={"ref": "main"}
+    ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${my_secret}    data={"ref": "main"}
     ${status}=    Set Variable    204
     Should Be Equal As Numbers    ${status}    204
 
