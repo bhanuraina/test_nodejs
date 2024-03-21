@@ -8,6 +8,7 @@ Library    RequestsLibrary
 ${my_secret}     my_value
 ${headers}       Create Dictionary Authorization: token ${my_secret} Accept: application/vnd.github.v3+json
 
+
 *** Test Cases ***
 Test GitHub Action Trigger
     [Documentation]    Test that GitHub Action workflow is triggered
@@ -27,7 +28,8 @@ Given GitHub Action workflow is configured
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    ${response}=    POST   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches  headers=${headers}   
+    RequestsLibrary.Create Session  hook    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml  verify=${True}
+    ${response}=    RequestsLibrary.Post Request hook /dispatches   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches  headers=${headers}   
     Status Should Be    204    ${response}
 
 Then GitHub Action workflow is triggered successfully
