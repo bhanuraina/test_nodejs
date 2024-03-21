@@ -10,6 +10,9 @@ Test GitHub Action Trigger
     When Triggering GitHub Action workflow
     Then GitHub Action workflow is triggered successfully
 
+*** Variables ***
+    ${MySecret}			ThisIsNotReallyIt
+
 *** Keywords ***
 Given GitHub Action workflow is configured
     [Documentation]    Ensures that the GitHub Action workflow is configured properly
@@ -17,9 +20,6 @@ Given GitHub Action workflow is configured
     ${workflow_path}=    Set Variable    .github/workflows/ci.yml
     File Should Exist    ${workflow_path}
     # You might want to add additional checks to ensure the workflow file is configured correctly
-
-*** Variables ***
-    ${MySecret}			ThisIsNotReallyIt
 
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
