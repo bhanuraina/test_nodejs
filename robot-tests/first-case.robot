@@ -25,8 +25,8 @@ Given GitHub Action workflow is configured
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    POST   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches        headers={Authorization: token ${my_secret} Accept: application/vnd.github.v3+json}  data={"ref": "master"}
-    ...                    expected_status=204
+    ${response}=    Set Variable    HTTP Request   https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${my_secret} Accept: application/vnd.github.v3+json  data={"ref": "master"}
+    Status Should Be    204    ${response}
 
 Then GitHub Action workflow is triggered successfully
     [Documentation]    Verifies that the GitHub Action workflow is triggered successfully
