@@ -31,7 +31,7 @@ When Triggering GitHub Action workflow
     ${headers}=    Create Dictionary    Authorization    token ${my_secret}    Accept    application/vnd.github.v3+json
     ${data}=    Create Dictionary    ref=master
     ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=${headers} json=${data}
-    Log to console ${response}
+    Log To Console    ${response}
     Status Should Be    204    ${response}
 
 Then GitHub Action workflow is triggered successfully
