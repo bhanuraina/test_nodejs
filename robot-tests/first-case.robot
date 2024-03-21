@@ -29,7 +29,7 @@ When Triggering GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
     # RequestsLibrary.Create Session  hook    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml  verify=${True}
     ${headers}=    Create Dictionary    Authorization    token ${my_secret}    Accept    application/vnd.github.v3+json
-    ${data}=    Create Dictionary    ref=main
+    ${data}=    Create Dictionary    ref=master
     ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=${headers} json=${data}
     Status Should Be    204    ${response}
 
