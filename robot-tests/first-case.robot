@@ -3,7 +3,7 @@ Library    OperatingSystem
 Library    Collections
 
 *** Variables ***
-    ${my_secret}			ThisIsNotReallyIt
+${my_secret}     my_value
 
 *** Test Cases ***
 Test GitHub Action Trigger
