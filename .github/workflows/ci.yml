@@ -56,7 +56,7 @@ jobs:
           requirements_path: ${{ inputs.robot_requirements_path }}
 
       # run tests
-    - name: Tests - run tests osix
+    - name: Tests - run tests 
       id: tests
       if: ${{ hashFiles(inputs.robot_test_path) != '' }}
       run: |
