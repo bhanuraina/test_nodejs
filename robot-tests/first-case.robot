@@ -6,7 +6,7 @@ Library    RequestsLibrary
 
 *** Variables ***
 ${my_secret}     my_value
-${headers}       Create Dictionary Authorization: token ${my_secret} Accept: application/vnd.github.v3+json
+${headers}       Authorization: token ${my_secret} Accept: application/vnd.github.v3+json
 ${data}    ref=master
 
 *** Test Cases ***
