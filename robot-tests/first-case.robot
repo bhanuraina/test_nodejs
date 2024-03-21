@@ -1,6 +1,7 @@
 *** Settings ***
 Library    OperatingSystem
 Library    Collections
+Library    RequestsLibrary
 
 *** Variables ***
 ${my_secret}     my_value
