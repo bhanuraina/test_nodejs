@@ -18,10 +18,13 @@ Given GitHub Action workflow is configured
     File Should Exist    ${workflow_path}
     # You might want to add additional checks to ensure the workflow file is configured correctly
 
+*** Variables ***
+${MySecret}			ThisIsNotReallyIt
+
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
     # In this example, we'll simulate triggering the workflow by making an HTTP request to the GitHub API
-    ${MySecret}			ThisIsNotReallyIt
+    
     ${response}=    Set Variable    HTTP Request    https://api.github.com/repos/bhanuraina/test_nodejs/actions/workflows/ci.yml/dispatches    POST    headers=Authorization: token ${MySecret}    data={"ref": "main"}
     ${status}=    Set Variable    ${response.status_code}
     Should Be Equal As Numbers    ${status}    204
