@@ -19,7 +19,7 @@ Given GitHub Action workflow is configured
     # You might want to add additional checks to ensure the workflow file is configured correctly
 
 *** Variables ***
-${MySecret}			ThisIsNotReallyIt
+    ${MySecret}			ThisIsNotReallyIt
 
 When Triggering GitHub Action workflow
     [Documentation]    Triggers the GitHub Action workflow
