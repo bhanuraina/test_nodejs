@@ -2,10 +2,10 @@ name: Test
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: [NodeCI]
-    types:
-      - completed
+  #workflow_run:
+    #workflows: [NodeCI]
+    #types:
+      #- completed
 
 jobs:
   test-job:
