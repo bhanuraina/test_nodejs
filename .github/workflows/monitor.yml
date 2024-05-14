@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
        run: |
-         apt install curl tar -y
+         apt install curl tar 
        #   curl -L \
        #   -H "Accept: application/vnd.github+json" \
         #  -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
