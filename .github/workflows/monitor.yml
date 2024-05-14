@@ -24,8 +24,8 @@ jobs:
           fi
           helm version || echo ""
 
-          curl -o kubeaudit-v.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/v${{ inputs.kubeaudit_version }}/kubeaudit_${{ inputs.kubeaudit_version }}_linux_amd64.tar.gz ||
-          curl -o kubeaudit.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/${{ inputs.kubeaudit_version }}/kubeaudit_${{ inputs.kubeaudit_version }}_linux_amd64.tar.gz
+          curl -o kubeaudit-v.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/v0.22.1/kubeaudit_0.22.1_linux_amd64.tar.gz ||
+          curl -o kubeaudit.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/0.22.1/kubeaudit_0.22.1_linux_amd64.tar.gz
           tar xzf kubeaudit*.tar.gz
           ls -halF kubeaudit*
        #   curl -L \
