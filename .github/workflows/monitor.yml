@@ -12,7 +12,8 @@ jobs:
     name: Test Step
     runs-on: ubuntu-latest
     steps:
-      #- run: |
+       run: |
+         apt install curl tar -y
        #   curl -L \
        #   -H "Accept: application/vnd.github+json" \
         #  -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
