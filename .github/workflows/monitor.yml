@@ -41,7 +41,7 @@ jobs:
         run: |
           echo ">>> Creating manifest.yml with ${HELM_CMD}"
           IFS=" "
-          for chart in charts ; do
+          for chart in ./charts ; do
             ${HELM_CMD} template ${chart} >> manifest.yaml
           done
           IFS=","
