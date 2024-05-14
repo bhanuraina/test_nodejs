@@ -17,3 +17,19 @@ jobs:
           -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
           -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/bhanuraina/test_nodejs/actions/runs
+          steps:
+      - uses: actions/checkout@v3
+    
+      - name: run kubeaudit
+        uses: klustair/kubeaudit-action@v1.0
+          with:
+            path: 'charts'
+            kubeauditCommands: 'image,rootfs,limits'
+            helmVersion: '3'
+            kubeauditFormat: 'pretty'
+            kubeauditMinseverity: 'medium'
+            kubeauditIncludegenerated: 'true'
+            kubeauditVersion: '0.16.0'
+            helmV3Version: '3.7.2'
+
+            
