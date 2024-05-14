@@ -15,7 +15,7 @@ jobs:
       - name: install
         shell: bash
         run: |
-          apt install curl tar 
+          sudo apt install curl tar 
        #   curl -L \
        #   -H "Accept: application/vnd.github+json" \
         #  -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
