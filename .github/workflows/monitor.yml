@@ -12,10 +12,22 @@ jobs:
     name: Test Step
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: install
         shell: bash
         run: |
-          sudo apt install curl tar 
+          echo "HELM_CMD=/usr/local/bin/helm" >> $GITHUB_ENV
+          if [[ "${{ inputs.helm_version }}" == "2" ]]; then
+          curl --fail -s https://raw.githubusercontent.com/helm/helm/main/scripts/get | bash
+          else
+          curl --fail -s https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
+          fi
+          helm version || echo ""
+
+          curl -o kubeaudit-v.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/v${{ inputs.kubeaudit_version }}/kubeaudit_${{ inputs.kubeaudit_version }}_linux_amd64.tar.gz ||
+          curl -o kubeaudit.tar.gz --fail -sL https://github.com/Shopify/kubeaudit/releases/download/${{ inputs.kubeaudit_version }}/kubeaudit_${{ inputs.kubeaudit_version }}_linux_amd64.tar.gz
+          tar xzf kubeaudit*.tar.gz
+          ls -halF kubeaudit*
        #   curl -L \
        #   -H "Accept: application/vnd.github+json" \
         #  -H "Authorization: Bearer ${{secrets.GITHUB_TOKEN}}" \
@@ -23,18 +35,36 @@ jobs:
           #  https://api.github.com/repos/bhanuraina/test_nodejs/actions/runs
           #steps:
           
-      - uses: actions/checkout@v3
-      
-      - name: run kubeaudit
-        uses: klustair/kubeaudit-action@v1.0
-        with:
-          path: 'charts'
-          kubeauditCommands: 'image,rootfs,limits'
-          helmVersion: '3'
-          kubeauditFormat: 'pretty'
-          kubeauditMinseverity: 'medium'
-          kubeauditIncludegenerated: 'true'
-          kubeauditVersion: '0.16.0'
-          helmV3Version: '3.7.2'
-
-            
+      - name: Run audit checks
+        id: audit
+        shell: bash
+        run: |
+          echo ">>> Creating manifest.yml with ${HELM_CMD}"
+          IFS=" "
+          for chart in charts ; do
+            ${HELM_CMD} template ${chart} >> manifest.yaml
+          done
+          IFS=","
+          cmds="image,rootfs,limits"
+          for command in $cmds; do
+            echo ">>> Executing kubeaudit command ${command}"
+            ./kubeaudit ${command} true pretty info  \
+              -f manifest.yaml >> ${command}.log || RESULT="FAIL"
+            if [ "${RESULT}" == "FAIL" ]; then
+              echo ">>> FAILED kubeaudit command ${command}"
+              FAILED_CMDS="${FAILED_CMDS} ${command}"
+              cat ${command}.log
+            fi
+          done
+          if [ "${RESULT}" == "FAIL" ]; then
+            echo RESULT="FAIL" >> $GITHUB_OUTPUT
+            echo FAILED_CMDS="${FAILED_CMDS}" >> $GITHUB_OUTPUT
+            echo "Report: kubeaudit check result: FAIL!"
+          else
+            echo RESULT="OK" >> $GITHUB_OUTPUT
+            echo "Report: kubeaudit check result: OK!"
+          fi
+  
+        
+        
+                    
