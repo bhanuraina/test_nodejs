@@ -49,8 +49,7 @@ jobs:
           cmds="image,rootfs,limits"
           for command in $cmds; do
             echo ">>> Executing kubeaudit command ${command}"
-            ./kubeaudit help
-            ./kubeaudit audit
+            
             ./kubeaudit ${command} true pretty info  \
               -f ./charts/templates/deployment.yaml >> ${command}.log || RESULT="FAIL"
             if [ "${RESULT}" == "FAIL" ]; then
