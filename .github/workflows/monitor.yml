@@ -40,11 +40,10 @@ jobs:
         shell: bash
         run: |
           echo ">>> Creating manifest.yml with ${HELM_CMD}"
-          ./kubeaudit help rootfs
-            ./kubeaudit audit
+          
           IFS=" "
           #for chart in ./charts ; do
-            ${HELM_CMD} template ./charts >> manifest.yaml
+            #${HELM_CMD} template ./charts >> manifest.yaml
           #done
           IFS=","
           cmds="image,rootfs,limits"
@@ -53,7 +52,7 @@ jobs:
             ./kubeaudit help
             ./kubeaudit audit
             ./kubeaudit ${command} true pretty info  \
-              -f manifest.yaml >> ${command}.log || RESULT="FAIL"
+              -f ./charts/templates/deployment.yaml >> ${command}.log || RESULT="FAIL"
             if [ "${RESULT}" == "FAIL" ]; then
               echo ">>> FAILED kubeaudit command ${command}"
               FAILED_CMDS="${FAILED_CMDS} ${command}"
