@@ -53,7 +53,7 @@ jobs:
           for command in $cmds; do
             echo ">>> Executing kubeaudit command ${command}"
             
-            ./kubeaudit ${command} true pretty info  \
+            ./kubeaudit all  true pretty info -k ./kudeautit-config.yml \
               -f ./charts/templates/deployment.yaml >> ${command}.log || RESULT="FAIL"
             if [ "${RESULT}" == "FAIL" ]; then
               echo ">>> FAILED kubeaudit command ${command}"
