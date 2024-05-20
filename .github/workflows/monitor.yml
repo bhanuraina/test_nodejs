@@ -40,7 +40,10 @@ jobs:
         shell: bash
         run: |
           echo ">>> Creating manifest.yml with ${HELM_CMD}"
-          
+          echo "here it is"
+
+           ./kubeaudit all --help
+           
           IFS=" "
           #for chart in ./charts ; do
             #${HELM_CMD} template ./charts >> manifest.yaml
