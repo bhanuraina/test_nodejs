@@ -42,7 +42,6 @@ jobs:
           echo ">>> Creating manifest.yml with ${HELM_CMD}"
           echo "here it is"
 
-           ./kubeaudit all --help
            
           IFS=" "
           #for chart in ./charts ; do
@@ -50,26 +49,9 @@ jobs:
           #done
           IFS=","
           cmds="image,rootfs,limits"
-          for command in $cmds; do
-            echo ">>> Executing kubeaudit command ${command}"
-            
+          
             ./kubeaudit all  true pretty info -k ./kudeautit-config.yml \
-              -f ./charts/templates/deployment.yaml >> ${command}.log || RESULT="FAIL"
-            if [ "${RESULT}" == "FAIL" ]; then
-              echo ">>> FAILED kubeaudit command ${command}"
-              FAILED_CMDS="${FAILED_CMDS} ${command}"
-              cat ${command}.log
-            fi
-          done
-          if [ "${RESULT}" == "FAIL" ]; then
-            echo RESULT="FAIL" >> $GITHUB_OUTPUT
-            echo FAILED_CMDS="${FAILED_CMDS}" >> $GITHUB_OUTPUT
-            echo "Report: kubeaudit check result: FAIL!"
-          else
-            echo RESULT="OK" >> $GITHUB_OUTPUT
-            echo "Report: kubeaudit check result: OK!"
-          fi
-  
-        
+              -f ./manifest.yaml 
+           
         
                     
