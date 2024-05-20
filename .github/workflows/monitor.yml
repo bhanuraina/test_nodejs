@@ -41,7 +41,7 @@ jobs:
         run: |
           echo ">>> Creating manifest.yml with "
           echo "here it is" 
-          ./kubeaudit all  true pretty info  \
+          ./kubeaudit all  true pretty info -k ./kubeaudit-config.yaml \
               -f ./manifest.yaml 
            
         
