@@ -39,9 +39,9 @@ jobs:
         id: audit
         shell: bash
         run: |
-          echo ">>> Creating manifest.yml with ${HELM_CMD}"
+          echo ">>> Creating manifest.yml with "
           echo "here it is" 
-          ./kubeaudit all  true pretty info -k ./kudeautit-config.yml \
+          ./kubeaudit all  true pretty info  \
               -f ./manifest.yaml 
            
         
