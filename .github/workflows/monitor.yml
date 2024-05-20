@@ -43,7 +43,7 @@ jobs:
           echo "here it is" 
           pwd 
           ls -ltr
-          ./kubeaudit all  true pretty info -k ./kubeaudit-config.yml \
+          ./kubeaudit all  true pretty info -k ${{ github.workspace }}/kubeaudit-config.yml \
               -f ./manifest.yaml 
            
         
