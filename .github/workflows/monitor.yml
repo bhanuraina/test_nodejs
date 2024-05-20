@@ -40,17 +40,8 @@ jobs:
         shell: bash
         run: |
           echo ">>> Creating manifest.yml with ${HELM_CMD}"
-          echo "here it is"
-
-           
-          IFS=" "
-          #for chart in ./charts ; do
-            #${HELM_CMD} template ./charts >> manifest.yaml
-          #done
-          IFS=","
-          cmds="image,rootfs,limits"
-          
-            ./kubeaudit all  true pretty info -k ./kudeautit-config.yml \
+          echo "here it is" 
+          ./kubeaudit all  true pretty info -k ./kudeautit-config.yml \
               -f ./manifest.yaml 
            
         
